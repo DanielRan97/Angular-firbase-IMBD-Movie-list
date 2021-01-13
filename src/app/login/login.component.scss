@@ -1,0 +1,33 @@
+:host {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .card-row {
+    display: flex;
+    margin: 0 -0.5rem;
+  }
+  
+  .card-col {
+    flex: 1 0 calc(50% - 1rem);
+    margin: 0 0.5rem;
+  }
+
+  #Blog{    
+      margin-top: 50px;
+      background-color: red;
+      color: white;  
+      width: 70%; 
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #Blog:hover{
+      background-color: white;
+      color: red;
+  }
+  strong{
+      margin-left: auto;
+      margin-right: auto;
+  }

@@ -1,0 +1,37 @@
+.addForm{
+    margin-top:10px;
+}
+
+span{
+    color: #fa0;
+}
+
+[nbButton].appearance-filled.status-warning {
+    background-color: #fa0;
+    border-color: #fa0;
+    color: black;
+}
+
+[nbButton].appearance-filled.status-warning:hover{
+
+    background-color: black;
+    border-color: black;
+    color:  #fa0;
+}
+
+select:hover{
+    background-color: #edf1f7 !important;
+}
+
+option{
+    color: black;
+    background-color:white ;
+}
+
+option:hover{
+    background-color: #edf1f7 !important;
+}
+button{
+    margin:3px ;
+}
+

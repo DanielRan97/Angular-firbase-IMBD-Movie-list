@@ -1,0 +1,50 @@
+<div id="add" style="direction: ltr;">
+    <nb-card style="width: 100%;height: 100%;padding: 3px;">
+    <h4>Add <span>m</span>ovie</h4>
+  
+    <form #f="ngForm">
+       
+        <div class="addForm">
+        <input type="text" maxlength="30" #name required nbInput fullWidth shape="round" placeholder="Movie Name*" [(ngModel)]="movie.name" name="name">
+        <p *ngIf="alredy" style="color: red;font-size: 10px;text-align: center;
+        margin-top: 7px;">{{alredy}}</p>
+    </div>
+
+    <div class="addForm">
+        <select #category required class="form-control" style="border-radius: 100px;background-color: #f7f9fc;
+        color: #aaafb8;">
+        <option value="" disabled selected hidden>Categoty*</option>
+            <option value="Action">Action</option>
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Other">Other</option>
+          </select>
+    </div>
+    
+    <div class="addForm">
+        
+        <input type="text" #link nbInput fullWidth shape="round" placeholder="IMBD link*" [(ngModel)]="movie.link" name="link" required>
+        <p *ngIf="imbdT" style="color: red;font-size: 10px;text-align: center;
+        margin-top: 7px;">{{imbdT}}</p>
+       
+    </div>
+        <div class="addForm">
+        
+        <input type="text"  nbInput fullWidth shape="round" #image1 placeholder="IMBD image link or image link" [(ngModel)]="movie.img" name="img" required>
+        <p *ngIf="onlyImage" style="color: red;font-size: 10px;text-align: center;
+        margin-top: 7px;">{{onlyImage}}</p>
+    </div>
+    
+    <button type="button" nbButton status="warning" 
+    style="margin-left: 15px;font-size: 15px;" [disabled]="!f.valid"
+    (click)="checkImage(name.value,category.value,link.value,image1.value)">
+    Add<nb-icon icon="plus-outline"></nb-icon>
+    </button>
+
+    <button nbButton (click)="cancel()" style="margin-left: 67px;"> cancel</button>
+
+    <nb-alert status="danger" *ngIf="!f.valid" style="margin-top: 21px;">Please complete all required fields !</nb-alert>
+    <nb-alert status="success" *ngIf="f.valid" style="margin-top: 21px;">The movie is ready !</nb-alert>
+</form>
+</nb-card>
+</div>

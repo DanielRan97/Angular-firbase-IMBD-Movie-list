@@ -1,0 +1,175 @@
+<nb-layout>
+    <nb-layout-header fixed>
+      <button nbButton hero status="warning" size="tiny" (click)="toggle()">
+        <nb-icon icon="menu-outline" style="color: black;"></nb-icon></button>
+       <h2 style="margin-left: 5px;position: absolute;left: 1px;bottom: 24%;">Movie <span style="color: #fa0;">L</span>ist</h2>
+    </nb-layout-header>
+    <nb-sidebar >
+      <div *ngFor="let user of username">
+        <p style="text-align: center; color:#fa0;"> <b> שלום,{{user.displayName}}</b></p>
+      </div>
+      <hr/>
+      <h6 *ngIf="categories[0]" style="text-align: center;color: #00000047;">Categories</h6>
+      <hr *ngIf="categories[0]" style="text-align: center;width: 20%;">
+      <button nbButton class="mebuB" (click)="showAction()" style="background: none;color: black;border: none;width:100%;margin: 0px;" *ngIf="categories.includes('Action')">Action</button>
+      <button nbButton class="mebuB" (click)="showDrama()" style="background: none;color: black;border: none;width:100%;margin: 0px;" *ngIf="categories.includes('Drama')">Drama</button>
+      <button nbButton class="mebuB" (click)="showComedy()" style="background: none;color: black;border: none;width:100%;margin: 0px;" *ngIf="categories.includes('Comedy')">Comedy</button>
+      <button nbButton class="mebuB" (click)="showOther()" style="background: none;color: black;border: none;width:100%;margin: 0px;" *ngIf="categories.includes('Other')">Other</button>
+      <button nbButton class="mebuB" (click)="showAll()" style="background: none;color: black;border: none;width:100%;margin: 0px;" *ngIf="categories[0]">All movies</button>
+      <hr *ngIf="categories[0]">
+      <button nbButton class="mebuB" style="background: none;color: black;border: none;width:100%;margin: 0px;" (click)="addMovieOpen()">הוסף סרט<nb-icon icon="plus-outline" style="color: black;"></nb-icon></button>
+      <button nbButton class="mebuB" style="background: none;color: black;border: none;width:100%;margin: 0px;" (click)="logOutOpen()">התנתקות<nb-icon icon="log-out-outline" style="color: black;"></nb-icon></button>
+    </nb-sidebar>
+  
+    <nb-layout-column  class="colored-column-info"> 
+    
+      <div id="all">
+        <h3 *ngIf="!allMovies[0]" style="text-align: center;color: #00000047;margin-top: 144px;">There are no movies in your list</h3>
+    <div class="movieCard" *ngIf="show=='All'" style="display: inline-block;">
+      <div *ngFor="let m of allMovies">
+      <nb-reveal-card>
+        <nb-card-front>
+          <nb-card>
+            <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+            <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+            </nb-card-header>
+            <nb-card-body style="padding: 0px;background-color: #fa0;">
+             <img src="{{m.img}}" style="width: 100%;">
+            </nb-card-body>
+          </nb-card>
+        </nb-card-front>
+        <nb-card-back style="height: 100%;">
+          <nb-card>
+            <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+            <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+            </nb-card-header>
+            <nb-card-body style="padding: 5px;background-color: #fa0;">
+              <p>Name: {{m.name}}</p>
+              <p>Category: {{m.category}}</p>
+              <a href="{{m.link}}" style="color: black;">Link:{{m.link}}</a>
+            </nb-card-body>
+          </nb-card>
+        </nb-card-back>
+      </nb-reveal-card>
+    </div>
+  </div>
+
+
+
+  <div class="movieCard" *ngIf="show=='Action'" style="display: inline-block;">
+    <div *ngFor="let m of action">
+    <nb-reveal-card>
+      <nb-card-front>
+        <nb-card >
+          <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+          <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+          </nb-card-header>
+          <nb-card-body style="padding: 0px;background-color: #fa0;">
+           <img src="{{m.img}}" style="width: 100%;">
+          </nb-card-body>
+        </nb-card>
+      </nb-card-front>
+      <nb-card-back style="height: 100%;">
+        <nb-card>
+          <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+          <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+          </nb-card-header>
+          <nb-card-body style="padding: 5px;background-color: #fa0;">
+            <p>Name: {{m.name}}</p>
+            <p>Category: {{m.category}}</p>
+            <a href="{{m.link}}" style="color: black;">Link:{{m.link}}</a>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-back>
+    </nb-reveal-card>
+  </div>
+</div>
+
+<div class="movieCard" *ngIf="show=='Drama'" style="display: inline-block;">
+  <div *ngFor="let m of drama">
+  <nb-reveal-card>
+    <nb-card-front>
+      <nb-card >
+        <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+        <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+        </nb-card-header>
+        <nb-card-body style="padding: 0px;background-color: #fa0;">
+         <img src="{{m.img}}" style="width: 100%;">
+        </nb-card-body>
+      </nb-card>
+    </nb-card-front>
+    <nb-card-back style="height: 100%;">
+      <nb-card>
+        <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+        <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+        </nb-card-header>
+        <nb-card-body style="padding: 5px;background-color: #fa0;">
+          <p>Name: {{m.name}}</p>
+          <p>Category: {{m.category}}</p>
+          <a href="{{m.link}}" style="color: black;">Link:{{m.link}}</a>
+        </nb-card-body>
+      </nb-card>
+    </nb-card-back>
+  </nb-reveal-card>
+</div>
+</div>
+
+<div class="movieCard" *ngIf="show=='Comedy'" style="display: inline-block;">
+  <div *ngFor="let m of comedy">
+  <nb-reveal-card>
+    <nb-card-front>
+      <nb-card >
+        <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+        <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+        </nb-card-header>
+        <nb-card-body style="padding: 0px;background-color: #fa0;">
+         <img src="{{m.img}}" style="width: 100%;">
+        </nb-card-body>
+      </nb-card>
+    </nb-card-front>
+    <nb-card-back style="height: 100%;">
+      <nb-card>
+        <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+        <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+        </nb-card-header>
+        <nb-card-body style="padding: 5px;background-color: #fa0;">
+          <p>Name: {{m.name}}</p>
+          <p>Category: {{m.category}}</p>
+          <a href="{{m.link}}" style="color: black;">Link:{{m.link}}</a>
+        </nb-card-body>
+      </nb-card>
+    </nb-card-back>
+  </nb-reveal-card>
+</div>
+</div>
+<div class="movieCard" *ngIf="show=='Other'" style="display: inline-block;">
+  <div *ngFor="let m of other">
+  <nb-reveal-card>
+    <nb-card-front>
+      <nb-card >
+        <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+        <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+        </nb-card-header>
+        <nb-card-body style="padding: 0px;background-color: #fa0;">
+         <img src="{{m.img}}" style="width: 100%;">
+        </nb-card-body>
+      </nb-card>
+    </nb-card-front>
+    <nb-card-back style="height: 100%;">
+      <nb-card>
+        <nb-card-header style="background-color:#fa0;color: black;position: relative;"><h6>{{m.name}}</h6>
+        <button style="background: none;border: none;position: absolute;top: 13px;right: 1px;" class="Dbutton" (click)="deleteMovie(m.name)"><nb-icon icon="close-circle-outline"></nb-icon></button>
+        </nb-card-header>
+        <nb-card-body style="padding: 5px;background-color: #fa0;">
+          <p>Name: {{m.name}}</p>
+          <p>Category: {{m.category}}</p>
+          <a href="{{m.link}}" style="color: black;">Link:{{m.link}}</a>
+        </nb-card-body>
+      </nb-card>
+    </nb-card-back>
+  </nb-reveal-card>
+</div>
+</div>
+</div>
+    </nb-layout-column>
+  </nb-layout>

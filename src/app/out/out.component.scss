@@ -1,0 +1,47 @@
+:host {
+    display: block;
+    max-height: 25rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .card-row {
+    display: flex;
+    margin: 0 -0.5rem;
+  }
+  
+  .card-col {
+    flex: 1 0 calc(50% - 1rem);
+    margin: 0 0.5rem;
+  }
+
+  #Blog{    
+      margin-top: 20px;
+      background-color: #fa0;
+      color: black;  
+      width: 70%; 
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #Blog:hover{
+      background-color: black;
+      color: #fa0;
+  }
+  strong{
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #Blog1{    
+    margin-top: 20px;
+    background-color: #fa0;
+    color: black;  
+    width: 70%; 
+    margin-left: auto;
+    margin-right: auto;
+}
+#Blog1:hover{
+  background-color: black;
+  color: #fa0;
+}
